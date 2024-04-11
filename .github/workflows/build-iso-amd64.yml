@@ -19,6 +19,10 @@ jobs:
         ports:
           - 8080:8080
     steps:
+    - name: Install packages for workflow
+      run: |
+        apt-get update
+        apt install -y curl jq unzip
     - name: Get latest workflow run ID
       id: get_latest_run
       run: |
@@ -33,5 +37,11 @@ jobs:
       shell: bash
     - name: Download artifact
       run: |
-        curl -s -o artifact.zip -L -u ${{ secrets.GH_TOKEN }} "${{ steps.get_artifact_url.outputs.artifact_url }}"
+        curl -s -o root.zip -L -u ${{ secrets.GH_TOKEN }} "${{ steps.get_artifact_url.outputs.artifact_url }}"
       shell: bash
+    - name: Build ISO on Debian 12
+      run: |
+        ls -la
+        du -h -s *
+        unzip root.zip
+        ls -la
