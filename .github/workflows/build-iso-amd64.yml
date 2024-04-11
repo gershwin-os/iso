@@ -22,7 +22,7 @@ jobs:
     - name: Install packages for workflow
       run: |
         apt-get update
-        apt install -y curl jq
+        apt install -y curl jq unzip
     - name: Check out repository
       uses: actions/checkout@v3
     - name: Get latest workflow run ID
@@ -43,6 +43,5 @@ jobs:
       shell: bash
     - name: Build ISO on Debian 12
       run: |
-        apt-get update
         unzip root.zip
         ls -la
