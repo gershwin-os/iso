@@ -43,5 +43,7 @@ jobs:
       shell: bash
     - name: Build ISO on Debian 12
       run: |
+        ls -la
+        du -h -s *
         unzip root.zip
         ls -la
