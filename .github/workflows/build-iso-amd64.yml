@@ -19,12 +19,12 @@ jobs:
         ports:
           - 8080:8080
     steps:
-    - name: Check out repository
-      uses: actions/checkout@v3
-    - name: Build ISO on Debian 12
+    - name: Install packages for workflow
       run: |
         apt-get update
         apt install -y curl jq
+    - name: Check out repository
+      uses: actions/checkout@v3
     - name: Get latest workflow run ID
       id: get_latest_run
       run: |
@@ -41,3 +41,7 @@ jobs:
       run: |
         curl -s -o artifact.zip -L -u ${{ secrets.GITHUB_TOKEN }} "${{ steps.get_artifact_url.outputs.artifact_url }}"
       shell: bash
+    - name: Build ISO on Debian 12
+      run: |
+        apt-get update
+        find / -name artifact.zip
