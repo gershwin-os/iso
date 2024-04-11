@@ -39,10 +39,10 @@ jobs:
       shell: bash
     - name: Download artifact
       run: |
-        curl -s -o artifact.zip -L -u ${{ secrets.GITHUB_TOKEN }} "${{ steps.get_artifact_url.outputs.artifact_url }}"
+        curl -s -o root.zip -L -u ${{ secrets.GITHUB_TOKEN }} "${{ steps.get_artifact_url.outputs.artifact_url }}"
       shell: bash
     - name: Build ISO on Debian 12
       run: |
         apt-get update
-        find / -name artifact.zip
-        ls -la /bin/sh
+        unzip root.zip
+        ls -la
