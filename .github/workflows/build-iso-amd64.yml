@@ -21,7 +21,7 @@ jobs:
     steps:
     - uses: actions/download-artifact@v4
       with:
-        name: my-other-artifact
+        name: gershwin-root-archive
         github-token: ${{ secrets.GH_PAT }} # token with actions:read permissions on target repo
         repository: gershwin-os/root
         run-id: 1234
@@ -30,7 +30,7 @@ jobs:
     - name: Install packages for workflow
       run: |
         apt-get update
-        apt install -y curl jq unzip
+        apt install -y unzip
     - name: Build ISO on Debian 12
       run: |
         ls -la
