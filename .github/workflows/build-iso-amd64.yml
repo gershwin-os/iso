@@ -24,6 +24,7 @@ jobs:
     - name: Build ISO on Debian 12
       run: |
         apt-get update
+        apt install -y curl jq
     - name: Get latest workflow run ID
       id: get_latest_run
       run: |
