@@ -20,6 +20,11 @@ jobs:
           - 8080:8080
     steps:
     - uses: actions/download-artifact@v4
+      with:
+        name: my-other-artifact
+        github-token: ${{ secrets.GH_PAT }} # token with actions:read permissions on target repo
+        repository: gershwin-os/root
+        run-id: 1234
     - name: Display structure of downloaded files
       run: ls -R
     - name: Install packages for workflow
