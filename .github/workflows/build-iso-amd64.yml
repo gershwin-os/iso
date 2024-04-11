@@ -1,4 +1,4 @@
-name: Build ISO on Debian 12 AMD64
+name: Build ISO on Debian 12 AMD64 and ARM64
 
 on:
   push:
@@ -9,63 +9,63 @@ on:
       - main
 
 jobs:
-  test:
+  build:
     runs-on: ubuntu-latest
     container:
-        image: debian:bookworm-slim
-        options: >-
-          --privileged
-          --name debian
-        ports:
-          - 8080:8080
+      image: debian:bookworm-slim
+      options: >-
+        --privileged
+        --name debian
+      ports:
+        - 8080:8080
     steps:
-    - name: Install packages for workflow
-      run: |
-        apt-get update
-        apt install -y curl jq unzip
-    - name: Get latest AMD64 workflow run ID
-      id: get_latest_amd64_run
-      run: |
-        latest_run_amd64=$(curl -s -X GET -u ${{ secrets.GH_TOKEN }} "https://api.github.com/repos/gershwin-os/root/actions/runs?event=push&status=success&workflow=Build+root+on+Debian+12+AMD64&per_page=1" | jq -r '.workflow_runs[0].id')
-        echo "::set-output name=amd64_run_id::$latest_run_amd64"
-      shell: bash
-    - name: Get latest ARM64 workflow run ID
-      id: get_latest_arm64_run
-      run: |
-        latest_run_arm64=$(curl -s -X GET -u ${{ secrets.GH_TOKEN }} "https://api.github.com/repos/gershwin-os/root/actions/runs?event=push&status=success&workflow=Build+root+on+Debian+12+ARM64&per_page=1" | jq -r '.workflow_runs[0].id')
-        echo "::set-output name=arm64_run_id::$latest_run_arm64"
-      shell: bash
-    - name: Get AMD64 artifact URL
-      id: get_amd64_artifact_url
-      run: |
-        artifact_url_amd64=$(curl -s -X GET -u ${{ secrets.GH_TOKEN }} "https://api.github.com/repos/gershwin-os/root/actions/runs/${{ steps.get_latest_amd64_run.outputs.amd64_run_id }}/artifacts" | jq -r '.artifacts[0].archive_download_url')
-        echo "::set-output name=amd64_artifact_url::$artifact_url_amd64"
-      shell: bash
-    - name: Get ARM64 artifact URL
-      id: get_arm64_artifact_url
-      run: |
-        artifact_url_arm64=$(curl -s -X GET -u ${{ secrets.GH_TOKEN }} "https://api.github.com/repos/gershwin-os/root/actions/runs/${{ steps.get_latest_arm64_run.outputs.arm64_run_id }}/artifacts" | jq -r '.artifacts[0].archive_download_url')
-        echo "::set-output name=arm64_artifact_url::$artifact_url_arm64"
-      shell: bash
-    - name: Download AMD64 artifact
-      run: |
-        curl -s -o root_amd64.zip -L -u ${{ secrets.GH_TOKEN }} "${{ steps.get_amd64_artifact_url.outputs.amd64_artifact_url }}"
-      shell: bash
-    - name: Download ARM64 artifact
-      run: |
-        curl -s -o root_arm64.zip -L -u ${{ secrets.GH_TOKEN }} "${{ steps.get_arm64_artifact_url.outputs.arm64_artifact_url }}"
-      shell: bash
-    - name: Build ISO on Debian 12 AMD64
-      run: |
-        ls -la
-        du -h -s *
-        unzip root_amd64.zip
-        ls -la
-      continue-on-error: true
-    - name: Build ISO on Debian 12 ARM64
-      run: |
-        ls -la
-        du -h -s *
-        unzip root_arm64.zip
-        ls -la
-      continue-on-error: true
+      - name: Install packages for workflow
+        run: |
+          apt-get update
+          apt install -y curl jq unzip
+      - name: Get latest AMD64 workflow run ID
+        id: get_latest_amd64_run
+        run: |
+          latest_run_amd64=$(curl -s -X GET -u ${{ secrets.GH_TOKEN }} "https://api.github.com/repos/gershwin-os/root/actions/runs?event=push&status=success&workflow=Build+root+on+Debian+12+AMD64&per_page=1" | jq -r '.workflow_runs[0].id')
+          echo "AMD64_RUN_ID=$latest_run_amd64" >> $GITHUB_ENV
+        shell: bash
+      - name: Get latest ARM64 workflow run ID
+        id: get_latest_arm64_run
+        run: |
+          latest_run_arm64=$(curl -s -X GET -u ${{ secrets.GH_TOKEN }} "https://api.github.com/repos/gershwin-os/root/actions/runs?event=push&status=success&workflow=Build+root+on+Debian+12+ARM64&per_page=1" | jq -r '.workflow_runs[0].id')
+          echo "ARM64_RUN_ID=$latest_run_arm64" >> $GITHUB_ENV
+        shell: bash
+      - name: Get AMD64 artifact URL
+        id: get_amd64_artifact_url
+        run: |
+          artifact_url_amd64=$(curl -s -X GET -u ${{ secrets.GH_TOKEN }} "https://api.github.com/repos/gershwin-os/root/actions/runs/${{ env.AMD64_RUN_ID }}/artifacts" | jq -r '.artifacts[0].archive_download_url')
+          echo "AMD64_ARTIFACT_URL=$artifact_url_amd64" >> $GITHUB_ENV
+        shell: bash
+      - name: Get ARM64 artifact URL
+        id: get_arm64_artifact_url
+        run: |
+          artifact_url_arm64=$(curl -s -X GET -u ${{ secrets.GH_TOKEN }} "https://api.github.com/repos/gershwin-os/root/actions/runs/${{ env.ARM64_RUN_ID }}/artifacts" | jq -r '.artifacts[0].archive_download_url')
+          echo "ARM64_ARTIFACT_URL=$artifact_url_arm64" >> $GITHUB_ENV
+        shell: bash
+      - name: Download AMD64 artifact
+        run: |
+          curl -s -o root_amd64.zip -L -u ${{ secrets.GH_TOKEN }} "${{ env.AMD64_ARTIFACT_URL }}"
+        shell: bash
+      - name: Download ARM64 artifact
+        run: |
+          curl -s -o root_arm64.zip -L -u ${{ secrets.GH_TOKEN }} "${{ env.ARM64_ARTIFACT_URL }}"
+        shell: bash
+      - name: Build ISO on Debian 12 AMD64
+        run: |
+          ls -la
+          du -h -s *
+          unzip root_amd64.zip
+          ls -la
+        continue-on-error: true
+      - name: Build ISO on Debian 12 ARM64
+        run: |
+          ls -la
+          du -h -s *
+          unzip root_arm64.zip
+          ls -la
+        continue-on-error: true
