@@ -39,7 +39,7 @@ jobs:
         run: |
           curl -s -o root_arm64.zip -L -u ${{ secrets.GH_TOKEN }} "${{ env.ARM64_ARTIFACT_URL }}"
         shell: bash
-      - name: Run commands
+      - name: Build ISO on Debian 12 ARM64
         uses: uraimo/run-on-arch-action@v2
         id: runcmd
         with:
@@ -53,18 +53,14 @@ jobs:
           run: |
             uname -a
             echo ::set-output name=uname::$(uname -a)
+            pwd
+            ls -la
+            du -h -s *
+            unzip root_arm64.zip
+            ./build.sh
+            ls -la live-default
             ls -la
       - name: Get the output
         # Echo the `uname` output parameter from the `runcmd` step
         run: |
           echo "The uname output was ${{ steps.runcmd.outputs.uname }}"
-      - name: Build ISO on Debian 12 ARM64
-        run: |
-          pwd
-          ls -la
-          du -h -s *
-          unzip root_arm64.zip
-          ./build.sh
-          ls -la live-default
-          ls -la
-        continue-on-error: true
