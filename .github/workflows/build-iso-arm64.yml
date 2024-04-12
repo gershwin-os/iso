@@ -12,9 +12,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     strategy:
-        matrix:
-          os: [ubuntu-latest]
-          arch: [arm64]
+      matrix:
+        include:
+          - arch: aarch64
+            distro: ubuntu22.04
     container:
       image: ghcr.io/gershwin-os/builder-arm64:main
       options: >-
