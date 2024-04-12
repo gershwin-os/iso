@@ -16,13 +16,6 @@ jobs:
         include:
           - arch: aarch64
             distro: ubuntu22.04
-    container:
-      image: ghcr.io/gershwin-os/builder-arm64:main
-      options: >-
-        --privileged
-        --name debian
-      ports:
-        - 8080:8080
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
