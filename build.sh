@@ -4,11 +4,11 @@ rm -rf live-default
 mkdir live-default
 cd live-default || exit
 
-lb_config='\
+lb_config=" \
     --distribution bookworm \
     --archive-areas "main contrib non-free non-free-firmware" \
     --iso-volume "Gershwin"
-    '
+    "
 
 if [ -f "/home/runner/work/iso/iso/root_arm64.zip" ]; then
 lb_config="$lb_config \
