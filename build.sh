@@ -3,6 +3,9 @@
 # Get the machine architecture
 arch=$(uname -m)
 
+uname -a
+uname -m
+
 # Check if it's a 64-bit ARM system
 if [ "$arch" = "aarch64" ]; then
     export LB_BUILD_ARCH="arm64"
@@ -33,4 +36,4 @@ set -e
 
 EOF
 
-lb build
+# lb build
