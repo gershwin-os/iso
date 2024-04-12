@@ -3,21 +3,21 @@
 # Get the machine architecture
 arch=$(uname -m)
 
-rm -rf live-default
-mkdir live-default
-cd live-default || exit
-lb config --distribution bookworm --archive-areas "main contrib non-free non-free-firmware" --iso-volume "Gershwin"
-
 # Check if it's a 64-bit ARM system
 if [ "$arch" = "aarch64" ]; then
-    echo ARCHITECTURE="arm64" >> live-build/auto/config
+    export LB_BUILD_ARCH="arm64"
 # Check if it's a 64-bit Intel system
 elif [ "$arch" = "x86_64" ]; then
-    echo ARCHITECTURE="amd64" >> live-build/auto/config
+    export LB_BUILD_ARCH=ARCHITECTURE="amd64"
 else
     echo "Unsupported architecture: $arch"
     exit 1
 fi
+
+rm -rf live-default
+mkdir live-default
+cd live-default || exit
+lb config --distribution bookworm --architectures $LB_BUILD_ARCH --archive-areas "main contrib non-free non-free-firmware" --iso-volume "Gershwin"
 
 echo "xorg" > config/package-lists/gershwin.list.chroot
 pwd
