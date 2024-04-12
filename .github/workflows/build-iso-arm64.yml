@@ -16,7 +16,7 @@ jobs:
           os: [ubuntu-latest]
           arch: [arm64]
     container:
-      image: ghcr.io/gershwin-os/builder-ard64:main
+      image: ghcr.io/gershwin-os/builder-arm64:main
       options: >-
         --privileged
         --name debian
