@@ -24,6 +24,7 @@ echo "Config is ${lb_config}"
 lb config $lb_config
 
 echo "xorg" > config/package-lists/gershwin.list.chroot
+echo "zfsutils-linux" > config/package-lists/gershwin.list.chroot
 pwd
 ls -la ..
 #cp -R ../overlay/* config/includes.chroot_after_packages/
