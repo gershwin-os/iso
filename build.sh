@@ -24,9 +24,8 @@ echo "Config is ${lb_config}"
 lb config $lb_config
 
 echo "xorg" > config/package-lists/gershwin.list.chroot
-pwd
-ls -la ..
-#cp -R ../overlay/* config/includes.chroot_after_packages/
+echo "git" > config/package-lists/gershwin.list.chroot
+tar -xf ../root.tar.gz -C config/includes.chroot_after_packages/
 
 cat <<EOF > config/hooks/live/gershwin.hook.chroot
 #!/bin/sh
@@ -34,6 +33,8 @@ cat <<EOF > config/hooks/live/gershwin.hook.chroot
 set -e
 
 # This script is run inside the ISO chroot after packages
+git clone https://github.com/gnustep/tools-scripts /tools-scripts
+cd / && ./tools-scripts/install-dependencies-linux
 
 EOF
 

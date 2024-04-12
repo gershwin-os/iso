@@ -43,11 +43,11 @@ jobs:
         shell: bash
       - name: Build ISO on Debian 12 AMD64
         run: |
-          pwd
-          ls -la
-          du -h -s *
           unzip root_amd64.zip
           ./build.sh
-          ls -la live-default
-          ls -la
-        continue-on-error: true
+        continue-on-error: false
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: gershwin-iso-arm64-main
+          path: /__w/root/root/live-defaukt/*.iso

@@ -53,16 +53,10 @@ jobs:
           dockerRunArgs: |
             --privileged
           run: |
-            uname -a
-            echo ::set-output name=uname::$(uname -a)
-            pwd
-            ls -la
-            du -h -s *
             unzip root_arm64.zip
             #./build.sh
-            ls -la live-default
-            ls -la
-      - name: Get the output
-        # Echo the `uname` output parameter from the `runcmd` step
-        run: |
-          echo "The uname output was ${{ steps.runcmd.outputs.uname }}"
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: gershwin-iso-arm64-main
+          path: /home/runner/work/root/root/live-default/*.iso
