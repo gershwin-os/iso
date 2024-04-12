@@ -10,7 +10,7 @@ lb_config='\
     --iso-volume "Gershwin"
     '
 
-if [ -f "/home/runner/work/iso/iso/root_amd64.zip" ]; then
+if [ -f "/__w/iso/iso/root_amd64.zip" ]; then
 lb_config="$lb_config \\
     --image-name gershwin-amd64-$(date +"%Y%m%d%H%m") \\
     "
