@@ -25,6 +25,20 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
+      - uses: uraimo/run-on-arch-action@v2
+        name: Run commands
+        id: runcmd
+        with:
+          arch: armv8
+          distro: ubuntu22.04    
+      # Set an output parameter `uname` for use in subsequent steps
+          run: |
+            uname -a
+            echo ::set-output name=uname::$(uname -a)
+      - name: Get the output
+        # Echo the `uname` output parameter from the `runcmd` step
+        run: |
+          echo "The uname output was ${{ steps.runcmd.outputs.uname }}"
       - name: Get latest ARM64 workflow run ID
         id: get_latest_arm64_run
         run: |
