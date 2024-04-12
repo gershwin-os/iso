@@ -23,8 +23,9 @@ jobs:
         uses: uraimo/run-on-arch-action@v2
         id: runcmd
         with:
-          arch: aarch64
-          distro: ubuntu22.04
+          arch: none
+          distro: none
+          base_image: ghcr.io/gershwin-os/builder-arm64:main
           # Create an artifacts directory
           setup: |
             echo "my info: " `uname -a`  
