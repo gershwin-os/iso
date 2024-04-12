@@ -20,7 +20,24 @@ fi
 rm -rf live-default
 mkdir live-default
 cd live-default || exit
-lb config --distribution bookworm --architectures $LB_BUILD_ARCH --archive-areas "main contrib non-free non-free-firmware" --iso-volume "Gershwin"
+
+lb_config='\
+    --distribution bookworm \
+    --architectures $LB_BUILD_ARCH \
+    --archive-areas "main contrib non-free non-free-firmware" \
+    --iso-volume "Gershwin"
+    '
+if [ "$LB_BUILD_ARCH" == 'arm64' ]; then
+lb_config="$lb_config \\
+    --bootloader grub-efi \\
+    --bootstrap-qemu-arch arm64 \\
+    --bootstrap-qemu-static /usr/bin/qemu-arm-static \\
+    "
+fi
+
+echo "Config is ${lb_config}"
+
+lb config $lb_config
 
 echo "xorg" > config/package-lists/gershwin.list.chroot
 pwd
