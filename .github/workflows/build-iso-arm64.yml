@@ -25,18 +25,15 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
-      # Add support for more platforms with QEMU (optional)
-      # https://github.com/docker/setup-qemu-action
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v3
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
       - name: Run commands
         uses: uraimo/run-on-arch-action@v2
         id: runcmd
         with:
           arch: aarch64
-          distro: ubuntu22.04    
+          distro: ubuntu22.04
+          # Create an artifacts directory
+          setup: |
+            echo "my info: " `uname -a`  
           # Set an output parameter `uname` for use in subsequent steps
           run: |
             uname -a
