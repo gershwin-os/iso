@@ -43,6 +43,7 @@ jobs:
         shell: bash
       - name: Build ISO on Debian 12 AMD64
         run: |
+          pwd
           ls -la
           du -h -s *
           unzip root_amd64.zip
