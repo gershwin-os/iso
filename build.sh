@@ -11,11 +11,11 @@ lb_config='\
     '
 
 if [ -f "/home/runner/work/iso/iso/root_arm64.zip" ]; then
-lb_config="$lb_config \\
-    --architectures arm64 \\
-    --bootloader grub-efi \\
-    --bootstrap-qemu-arch arm64 \\
-    --bootstrap-qemu-static /usr/bin/qemu-arm-static \\
+lb_config="$lb_config \
+    --architectures arm64 \
+    --bootloader grub-efi \
+    --bootstrap-qemu-arch arm64 \
+    --bootstrap-qemu-static /usr/bin/qemu-arm-static \
     "
 fi
 
