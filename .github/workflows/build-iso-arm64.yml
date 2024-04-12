@@ -45,6 +45,8 @@ jobs:
         shell: bash
       - name: Build ISO on Debian 12 ARM64
         run: |
+          pwd
+          ls -la ..
           ls -la
           du -h -s *
           unzip root_arm64.zip
