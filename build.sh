@@ -18,7 +18,7 @@ fi
 
 if [ -f "/home/runner/work/iso/iso/root_arm64.zip" ]; then
 lb_config="$lb_config \
-    --image-name gershwin-arm64-$(date +"%Y%m%d%H%m") \
+    --image-name gershwin-$(date +"%Y%m%d%H%m") \
     --architectures arm64 \
     --bootloader grub-efi \
     --bootstrap-qemu-arch arm64 \
