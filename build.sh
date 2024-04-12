@@ -6,7 +6,6 @@ cd live-default || exit
 
 lb_config=" \
     --distribution bookworm \
-    --archive-areas "'"bookworm main contrib non-free-firmware"'" \
     --image-name gershwin-$(date +"%Y%m%d%H%m") \
     --iso-volume "'"Gershwin"'"
     "
@@ -25,7 +24,6 @@ echo "Config is ${lb_config}"
 lb config $lb_config
 
 echo "xorg" > config/package-lists/gershwin.list.chroot
-echo "zfsutils-linux" > config/package-lists/gershwin.list.chroot
 pwd
 ls -la ..
 #cp -R ../overlay/* config/includes.chroot_after_packages/
