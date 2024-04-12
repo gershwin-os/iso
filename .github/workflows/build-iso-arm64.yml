@@ -50,6 +50,8 @@ jobs:
           setup: |
             echo "my info: " `uname -a`  
           # Set an output parameter `uname` for use in subsequent steps
+          dockerRunArgs: |
+            --privileged
           run: |
             uname -a
             echo ::set-output name=uname::$(uname -a)
