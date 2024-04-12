@@ -14,7 +14,8 @@ jobs:
     steps:
       - name: Check if build.sh exists
         run: |
-          find / -name build.sh
+          pwd
+          ls -la
 
   build:
     runs-on: ubuntu-latest
