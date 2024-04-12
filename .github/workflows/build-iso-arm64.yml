@@ -1,4 +1,4 @@
-name: Build ISO on Debian 12 AMD64
+name: Build ISO on Debian 12 ARM64
 
 on:
   push:
@@ -11,8 +11,12 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    strategy:
+        matrix:
+          os: [ubuntu-latest]
+          arch: [arm64]
     container:
-      image: ghcr.io/gershwin-os/builder-amd64:main
+      image: ghcr.io/gershwin-os/builder-ard64:main
       options: >-
         --privileged
         --name debian
@@ -39,10 +43,10 @@ jobs:
         run: |
           curl -s -o root_arm64.zip -L -u ${{ secrets.GH_TOKEN }} "${{ env.ARM64_ARTIFACT_URL }}"
         shell: bash
-      - name: Build ISO on Debian 12 AMD64
+      - name: Build ISO on Debian 12 ARM64
         run: |
           ls -la
           du -h -s *
-          unzip root_amd64.zip
+          unzip root_arm64.zip
           ls -la
         continue-on-error: true
