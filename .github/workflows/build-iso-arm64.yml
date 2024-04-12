@@ -19,24 +19,6 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
-      - name: Run commands
-        uses: uraimo/run-on-arch-action@v2
-        id: runcmd
-        with:
-          arch: none
-          distro: none
-          base_image: ghcr.io/gershwin-os/builder-arm64:main
-          # Create an artifacts directory
-          setup: |
-            echo "my info: " `uname -a`  
-          # Set an output parameter `uname` for use in subsequent steps
-          run: |
-            uname -a
-            echo ::set-output name=uname::$(uname -a)
-      - name: Get the output
-        # Echo the `uname` output parameter from the `runcmd` step
-        run: |
-          echo "The uname output was ${{ steps.runcmd.outputs.uname }}"
       - name: Get latest ARM64 workflow run ID
         id: get_latest_arm64_run
         run: |
@@ -57,6 +39,25 @@ jobs:
         run: |
           curl -s -o root_arm64.zip -L -u ${{ secrets.GH_TOKEN }} "${{ env.ARM64_ARTIFACT_URL }}"
         shell: bash
+      - name: Run commands
+        uses: uraimo/run-on-arch-action@v2
+        id: runcmd
+        with:
+          arch: none
+          distro: none
+          base_image: ghcr.io/gershwin-os/builder-arm64:main
+          # Create an artifacts directory
+          setup: |
+            echo "my info: " `uname -a`  
+          # Set an output parameter `uname` for use in subsequent steps
+          run: |
+            uname -a
+            echo ::set-output name=uname::$(uname -a)
+            ls -la
+      - name: Get the output
+        # Echo the `uname` output parameter from the `runcmd` step
+        run: |
+          echo "The uname output was ${{ steps.runcmd.outputs.uname }}"
       - name: Build ISO on Debian 12 ARM64
         run: |
           pwd
