@@ -44,4 +44,4 @@ set -e
 
 EOF
 
-# lb build
+lb build
