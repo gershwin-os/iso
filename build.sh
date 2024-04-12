@@ -9,9 +9,9 @@ lb_config='\
     --archive-areas "main contrib non-free non-free-firmware" \
     --iso-volume "Gershwin"
     '
-if [ "$LB_BUILD_ARCH" == 'arm64' ]; then
+if [ -f "/home/runner/work/iso/iso/root_arm64.zip" ]; then
 lb_config="$lb_config \\
-    --architectures $LB_BUILD_ARCH \
+    --architectures arm64 \
     --bootloader grub-efi \\
     --bootstrap-qemu-arch arm64 \\
     --bootstrap-qemu-static /usr/bin/qemu-arm-static \\

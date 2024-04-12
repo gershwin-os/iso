@@ -57,7 +57,7 @@ jobs:
             ls -la
             du -h -s *
             unzip root_arm64.zip
-            export LB_BUILD_ARCH="arm64"&& ./build.sh
+            # ./build.sh
             ls -la live-default
             ls -la
       - name: Get the output
