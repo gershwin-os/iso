@@ -19,6 +19,8 @@ jobs:
       ports:
         - 8080:8080
     steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
       - name: Get latest AMD64 workflow run ID
         id: get_latest_amd64_run
         run: |

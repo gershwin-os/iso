@@ -24,7 +24,7 @@ jobs:
         - 8080:8080
     steps:
       - name: Check out repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Get latest ARM64 workflow run ID
         id: get_latest_arm64_run
         run: |
