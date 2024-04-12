@@ -9,16 +9,6 @@ on:
       - main
 
 jobs:
-  pre-build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check if build.sh exists
-        run: |
-          pwd
-          ls -la
-          ls -la ..
-          ls -la ../..
-
   build:
     runs-on: ubuntu-latest
     strategy:
@@ -33,6 +23,8 @@ jobs:
       ports:
         - 8080:8080
     steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
       - name: Get latest ARM64 workflow run ID
         id: get_latest_arm64_run
         run: |
