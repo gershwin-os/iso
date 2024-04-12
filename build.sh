@@ -7,18 +7,12 @@ cd live-default || exit
 lb_config=" \
     --distribution bookworm \
     --archive-areas "main contrib non-free non-free-firmware" \
+    --image-name gershwin-$(date +"%Y%m%d%H%m") \
     --iso-volume "Gershwin"
     "
 
-if [ -f "/__w/iso/iso/root_amd64.zip" ]; then
-lb_config="$lb_config \
-    --image-name gershwin-amd64-$(date +"%Y%m%d%H%m") \
-    "
-fi
-
 if [ -f "/home/runner/work/iso/iso/root_arm64.zip" ]; then
 lb_config="$lb_config \
-    --image-name gershwin-$(date +"%Y%m%d%H%m") \
     --architectures arm64 \
     --bootloader grub-efi \
     --bootstrap-qemu-arch arm64 \
