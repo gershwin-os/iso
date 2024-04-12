@@ -7,6 +7,7 @@ lb config --distribution bookworm --archive-areas "main contrib non-free non-fre
 
 echo "xorg" > config/package-lists/gershwin.list.chroot
 pwd
+ls -la ..
 #cp -R ../overlay/* config/includes.chroot_after_packages/
 
 cat <<EOF > config/hooks/live/gershwin.hook.chroot

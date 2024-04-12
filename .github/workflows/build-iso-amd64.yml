@@ -46,5 +46,6 @@ jobs:
           ls -la
           du -h -s *
           unzip root_amd64.zip
+          ./build.sh
           ls -la
         continue-on-error: true
