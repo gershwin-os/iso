@@ -47,6 +47,7 @@ jobs:
         run: |
           pwd
           ls -la ..
+          ls -la ../..
           ls -la
           du -h -s *
           unzip root_arm64.zip
