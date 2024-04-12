@@ -9,6 +9,13 @@ on:
       - main
 
 jobs:
+  pre-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check if build.sh exists
+        run: |
+          find / -name build.sh
+
   build:
     runs-on: ubuntu-latest
     strategy:
