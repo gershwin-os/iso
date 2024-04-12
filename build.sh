@@ -23,6 +23,7 @@ lb_config="$lb_config \\
     --bootloader grub-efi \\
     --bootstrap-qemu-arch arm64 \\
     --bootstrap-qemu-static /usr/bin/qemu-arm-static \\
+    ----verbose 3 \\
     "
 fi
 
