@@ -48,6 +48,7 @@ jobs:
           pwd
           ls -la ..
           ls -la ../..
+          find / -name build.sh
           ls -la
           du -h -s *
           unzip root_arm64.zip
