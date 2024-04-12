@@ -48,11 +48,10 @@ jobs:
       - name: Build ISO on Debian 12 ARM64
         run: |
           pwd
-          ls -la ..
-          ls -la ../..
-          find / -name build.sh
           ls -la
           du -h -s *
           unzip root_arm64.zip
+          ./build.sh
+          ls -la live-default
           ls -la
         continue-on-error: true
