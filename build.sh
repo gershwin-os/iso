@@ -6,7 +6,6 @@ cd live-default || exit
 
 lb_config=" \
     --distribution bookworm \
-    --archive-areas "'"main contrib non-free non-free-firmware"'" \
     --iso-volume "'"Gershwin"'"
     "
 
