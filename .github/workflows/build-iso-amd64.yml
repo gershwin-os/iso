@@ -50,4 +50,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: gershwin-iso-arm64-main
-          path: /__w/root/root/live-defaukt/*.iso
+          path: /__w/root/root/live-default/*.iso
