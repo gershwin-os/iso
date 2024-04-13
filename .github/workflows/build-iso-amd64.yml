@@ -49,5 +49,5 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: gershwin-iso-arm64-main
+          name: gershwin-iso-amd64-main
           path: /__w/iso/iso/live-default/*.iso

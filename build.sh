@@ -25,7 +25,16 @@ lb config $lb_config
 
 echo "xorg" > config/package-lists/gershwin.list.chroot
 echo "git" > config/package-lists/gershwin.list.chroot
-tar -xf ../root.tar.gz -C config/includes.chroot_after_packages/
+
+# Extract GNUstep for AMD64
+if [ -f "/__w/iso/iso/root_amd64.zip" ]; then
+  tar -xf /__w/iso/iso/root-amd64.tar.gz -C /__w/iso/iso/live-default/config/includes.chroot_after_packages/
+fi
+
+# Extract GNUstep for ARM64
+if [ -f "/home/runner/work/iso/iso/root_arm64.zip" ]; then
+  tar -xf /home/runner/work/iso/iso/root-arm64.tar.gz -C /home/runner/work/iso/iso/live-default/config/includes.chroot_after_packages/
+fi
 
 cat <<EOF > config/hooks/live/gershwin.hook.chroot
 #!/bin/sh
