@@ -59,4 +59,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: gershwin-iso-arm64-main
-          path: /home/runner/work/root/root/live-default/*.iso
+          path: /home/runner/work/iso/iso/live-default/*.iso
