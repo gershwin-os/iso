@@ -26,13 +26,15 @@ lb config $lb_config
 echo "xorg" > config/package-lists/gershwin.list.chroot
 echo "git" > config/package-lists/gershwin.list.chroot
 
-# Extract GNUstep for AMD64
+# Modify package list extract GNUstep for AMD64
 if [ -f "/__w/iso/iso/root_amd64.zip" ]; then
+  cp /__w/iso/iso/config/package-lists/gershwin.list.chroot config/package-lists/gershwin.list.chroot
   tar -xf /__w/iso/iso/root-amd64.tar.gz -C /__w/iso/iso/live-default/config/includes.chroot_after_packages/
 fi
 
-# Extract GNUstep for ARM64
+# Modify package list and extract GNUstep for ARM64
 if [ -f "/home/runner/work/iso/iso/root_arm64.zip" ]; then
+  cp /home/runner/work/iso/iso/config/package-lists/gershwin.list.chroot config/package-lists/gershwin.list.chroot
   tar -xf /home/runner/work/iso/iso/root-arm64.tar.gz -C /home/runner/work/iso/iso/live-default/config/includes.chroot_after_packages/
 fi
 
