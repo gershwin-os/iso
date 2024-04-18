@@ -33,6 +33,10 @@ if [ -f "/__w/iso/iso/root_amd64.zip" ]; then
   tar -xf /__w/iso/iso/system-amd64.tar.gz -C /__w/iso/iso/live-default/config/includes.chroot_after_packages/
   tar -xf /__w/iso/iso/developer-amd64.tar.gz -C /__w/iso/iso/live-default/config/includes.chroot_after_packages/
   tar -xf /__w/iso/iso/applications-amd64.tar.gz -C /__w/iso/iso/live-default/config/includes.chroot_after_packages/
+  ls /__w/iso/iso/live-default/config/includes.chroot_after_packages/
+  ls /__w/iso/iso/live-default/config/includes.chroot_after_packages/Applications
+  ls /__w/iso/iso/live-default/config/includes.chroot_after_packages/Developer
+  ls /__w/iso/iso/live-default/config/includes.chroot_after_packages/System/Applications
 fi
 
 # Modify package list and extract GNUstep for ARM64
@@ -42,6 +46,10 @@ if [ -f "/home/runner/work/iso/iso/root_arm64.zip" ]; then
   tar -xf /home/runner/work/iso/iso/system-arm64.tar.gz -C /home/runner/work/iso/iso/live-default/config/includes.chroot_after_packages/
   tar -xf /home/runner/work/iso/iso/developer-arm64.tar.gz -C /home/runner/work/iso/iso/live-default/config/includes.chroot_after_packages/
   tar -xf /home/runner/work/iso/iso/applications-arm64.tar.gz -C /home/runner/work/iso/iso/live-default/config/includes.chroot_after_packages/
+  ls /home/runner/work/iso/iso/live-default/config/includes.chroot_after_packages/
+  ls /home/runner/work/iso/iso/live-default/config/includes.chroot_after_packages/Applications
+  ls /home/runner/work/iso/iso/live-default/config/includes.chroot_after_packages/Developer
+  ls /home/runner/work/iso/iso/live-default/config/includes.chroot_after_packages/System/Applications
 fi
 
 cat <<EOF > config/hooks/live/gershwin.hook.chroot
