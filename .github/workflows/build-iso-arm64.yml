@@ -54,7 +54,7 @@ jobs:
             --privileged
           run: |
             unzip root_arm64.zip
-            ./build.sh
+            #./build.sh
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:

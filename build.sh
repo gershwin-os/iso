@@ -30,12 +30,18 @@ echo "git" > config/package-lists/gershwin.list.chroot
 if [ -f "/__w/iso/iso/root_amd64.zip" ]; then
   cp /__w/iso/iso/config/package-lists/gershwin.list.chroot config/package-lists/gershwin.list.chroot
   tar -xf /__w/iso/iso/root-amd64.tar.gz -C /__w/iso/iso/live-default/config/includes.chroot_after_packages/
+  tar -xf /__w/iso/iso/system-amd64.tar.gz -C /__w/iso/iso/live-default/config/includes.chroot_after_packages/
+  tar -xf /__w/iso/iso/developer-amd64.tar.gz -C /__w/iso/iso/live-default/config/includes.chroot_after_packages/
+  tar -xf /__w/iso/iso/applications-amd64.tar.gz -C /__w/iso/iso/live-default/config/includes.chroot_after_packages/
 fi
 
 # Modify package list and extract GNUstep for ARM64
 if [ -f "/home/runner/work/iso/iso/root_arm64.zip" ]; then
   cp /home/runner/work/iso/iso/config/package-lists/gershwin.list.chroot config/package-lists/gershwin.list.chroot
   tar -xf /home/runner/work/iso/iso/root-arm64.tar.gz -C /home/runner/work/iso/iso/live-default/config/includes.chroot_after_packages/
+  tar -xf /home/runner/work/iso/iso/system-arm64.tar.gz -C /home/runner/work/iso/iso/live-default/config/includes.chroot_after_packages/
+  tar -xf /home/runner/work/iso/iso/developer-arm64.tar.gz -C /home/runner/work/iso/iso/live-default/config/includes.chroot_after_packages/
+  tar -xf /home/runner/work/iso/iso/applications-arm64.tar.gz -C /home/runner/work/iso/iso/live-default/config/includes.chroot_after_packages/
 fi
 
 cat <<EOF > config/hooks/live/gershwin.hook.chroot
