@@ -35,7 +35,7 @@ if [ -f "/__w/iso/iso/root_amd64.zip" ]; then
   tar -xf /__w/iso/iso/applications-amd64.tar.gz -C /__w/iso/iso/live-default/config/includes.chroot_after_packages/
   ls /__w/iso/iso/live-default/config/includes.chroot_after_packages/
   ls /__w/iso/iso/live-default/config/includes.chroot_after_packages/Applications
-  ls /__w/iso/iso/live-default/config/includes.chroot_after_packages/Developer
+  ls /__w/iso/iso/live-default/config/includes.chroot_after_packages/Developer/Applications
   ls /__w/iso/iso/live-default/config/includes.chroot_after_packages/System/Applications
 fi
 
@@ -48,7 +48,7 @@ if [ -f "/home/runner/work/iso/iso/root_arm64.zip" ]; then
   tar -xf /home/runner/work/iso/iso/applications-arm64.tar.gz -C /home/runner/work/iso/iso/live-default/config/includes.chroot_after_packages/
   ls /home/runner/work/iso/iso/live-default/config/includes.chroot_after_packages/
   ls /home/runner/work/iso/iso/live-default/config/includes.chroot_after_packages/Applications
-  ls /home/runner/work/iso/iso/live-default/config/includes.chroot_after_packages/Developer
+  ls /home/runner/work/iso/iso/live-default/config/includes.chroot_after_packages/Developer/Applications
   ls /home/runner/work/iso/iso/live-default/config/includes.chroot_after_packages/System/Applications
 fi
 
