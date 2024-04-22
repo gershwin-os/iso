@@ -41,9 +41,11 @@ if [ -f "/__w/iso/iso/root_amd64.zip" ]; then
   wget -O opt.zip https://github.com/gershwin-os/opt/archive/refs/heads/main.zip
   wget -O etc.zip https://github.com/gershwin-os/etc/archive/refs/heads/main.zip
   wget -O desktop-pictures.zip https://github.com/gershwin-os/desktop-pictures/archive/refs/heads/main.zip
+  mkdir -p /__w/iso/iso/live-default/config/includes.chroot_after_packages/etc
+  mkdir -p /__w/iso/iso/live-default/config/includes.chroot_after_packages/opt
+  mkdir -p /__w/iso/iso/live-default/config/includes.chroot_after_packages/System/Library/Desktop\ Pictures/
   bsdtar -xf opt.zip -C /__w/iso/iso/live-default/config/includes.chroot_after_packages/opt/ --strip-components 1 --exclude 'LICENSE' --exclude 'README.md'
   bsdtar -xf etc.zip -C /__w/iso/iso/live-default/config/includes.chroot_after_packages/etc/ --strip-components 1 --exclude 'LICENSE' --exclude 'README.md'
-  mkdir -p /__w/iso/iso/live-default/config/includes.chroot_after_packages/System/Library/Desktop\ Pictures/
   bsdtar -xf desktop-pictures.zip -C /__w/iso/iso/live-default/config/includes.chroot_after_packages/System/Library/Desktop\ Pictures/ --strip-components 1 --exclude 'README.md'
   chmod +x /__w/iso/iso/live-default/config/includes.chroot_after_packages/opt/bin/*
   ls /__w/iso/iso/live-default/config/includes.chroot_after_packages/opt/
@@ -64,9 +66,11 @@ if [ -f "/home/runner/work/iso/iso/root_arm64.zip" ]; then
   wget -O opt.zip https://github.com/gershwin-os/opt/archive/refs/heads/main.zip
   wget -O etc.zip https://github.com/gershwin-os/etc/archive/refs/heads/main.zip
   wget -O desktop-pictures.zip https://github.com/gershwin-os/desktop-pictures/archive/refs/heads/main.zip
+  mkdir -p /home/runner/work/iso/iso/live-default/config/includes.chroot_after_packages/etc
+  mkdir -p /home/runner/work/iso/iso/live-default/config/includes.chroot_after_packages/opt
+  mkdir -p /home/runner/work/iso/iso/live-default/config/includes.chroot_after_packages/System/Library/Desktop\ Pictures/
   bsdtar -xf opt.zip -C /home/runner/work/iso/iso/live-default/config/includes.chroot_after_packages/opt/ --strip-components 1 --exclude 'LICENSE' --exclude 'README.md'
   unzip etc.zip -C /home/runner/work/iso/iso/live-default/config/includes.chroot_after_packages/etc/ --strip-components 1 --exclude 'LICENSE' --exclude 'README.md'
-  mkdir -p /home/runner/work/iso/iso/live-default/config/includes.chroot_after_packages/System/Library/Desktop\ Pictures/
   unzip desktop-pictures.zip -C /home/runner/work/iso/iso/live-default/config/includes.chroot_after_packages/System/Library/Desktop\ Pictures/ --strip-components 1 --exclude 'README.md'
   chmod +x /home/runner/work/iso/iso/live-default/config/includes.chroot_after_packages/opt/bin/*
 fi
