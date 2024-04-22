@@ -77,7 +77,6 @@ if [ -f "/home/runner/work/iso/iso/root_arm64.zip" ]; then
   rm opt-main/LICENSE 
   rm opt-main/README.md
   unzip desktop-pictures.zip
-  rm desktop-pictures-main/README.md
   cp -R opt-main/* /home/runner/work/iso/iso/live-default/config/includes.chroot_after_packages/opt/
   cp -R etc-main/* /home/runner/work/iso/iso/live-default/config/includes.chroot_after_packages/etc/
   cp -R desktop-pictures-main/* home/runner/work/iso/iso/live-default/config/includes.chroot_after_packages/System/Library/Desktop\ Pictures/
