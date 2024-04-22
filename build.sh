@@ -41,17 +41,9 @@ if [ -f "/__w/iso/iso/root_amd64.zip" ]; then
   wget -O opt.zip https://github.com/gershwin-os/opt/archive/refs/heads/main.zip
   wget -O etc.zip https://github.com/gershwin-os/etc/archive/refs/heads/main.zip
   wget -O desktop-pictures.zip https://github.com/gershwin-os/desktop-pictures/archive/refs/heads/main.zip
-  unzip opt.zip 
-  rm opt-main/LICENSE 
-  rm opt-main/README.md
-  unzip etc.zip
-  rm opt-main/LICENSE 
-  rm opt-main/README.md
-  unzip desktop-pictures.zip
-  rm desktop-pictures-main/README.md
-  cp -R opt-main/* /__w/iso/iso/live-default/config/includes.chroot_after_packages/opt/
-  cp -R etc-main/* /__w/iso/iso/live-default/config/includes.chroot_after_packages/etc/
-  cp -R desktop-pictures/main/* /__w/iso/iso/live-default/config/includes.chroot_after_packages/System/Library/Desktop\ Pictures/
+  unzip opt.zip -d /__w/iso/iso/live-default/config/includes.chroot_after_packages/opt/ -x LICENSE README.md
+  unzip etc.zip -d /__w/iso/iso/live-default/config/includes.chroot_after_packages/etc/ -x LICENSE README.md
+  unzip desktop-pictures.zip -d /__w/iso/iso/live-default/config/includes.chroot_after_packages/System/Library/Desktop\ Pictures/ -x README.md
   chmod +x /__w/iso/iso/live-default/config/includes.chroot_after_packages/opt/bin/*
 fi
 
@@ -70,16 +62,9 @@ if [ -f "/home/runner/work/iso/iso/root_arm64.zip" ]; then
   wget -O opt.zip https://github.com/gershwin-os/opt/archive/refs/heads/main.zip
   wget -O etc.zip https://github.com/gershwin-os/etc/archive/refs/heads/main.zip
   wget -O desktop-pictures.zip https://github.com/gershwin-os/desktop-pictures/archive/refs/heads/main.zip
-  unzip opt.zip 
-  rm opt-main/LICENSE 
-  rm opt-main/README.md
-  unzip etc.zip
-  rm opt-main/LICENSE 
-  rm opt-main/README.md
-  unzip desktop-pictures.zip
-  cp -R opt-main/* /home/runner/work/iso/iso/live-default/config/includes.chroot_after_packages/opt/
-  cp -R etc-main/* /home/runner/work/iso/iso/live-default/config/includes.chroot_after_packages/etc/
-  cp -R desktop-pictures-main/* home/runner/work/iso/iso/live-default/config/includes.chroot_after_packages/System/Library/Desktop\ Pictures/
+  unzip opt.zip -d /home/runner/work/iso/iso/live-default/config/includes.chroot_after_packages/opt/ -x LICENSE README.md
+  unzip etc.zip -d /home/runner/work/iso/iso/live-default/config/includes.chroot_after_packages/etc/ -x LICENSE README.md
+  unzip desktop-pictures.zip -d /home/runner/work/iso/iso/live-default/config/includes.chroot_after_packages/System/Library/Desktop\ Pictures/ -x README.md
   chmod +x /home/runner/work/iso/iso/live-default/config/includes.chroot_after_packages/opt/bin/*
 fi
 
