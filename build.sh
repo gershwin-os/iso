@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Exit immediately if any command exits with a non-zero status
+set -e
+
 rm -rf live-default
 mkdir live-default
 cd live-default || exit
