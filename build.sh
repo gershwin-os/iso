@@ -45,6 +45,7 @@ if [ -f "/__w/iso/iso/root_amd64.zip" ]; then
   unzip etc.zip -j -d /__w/iso/iso/live-default/config/includes.chroot_after_packages/etc/ -x LICENSE README.md
   unzip desktop-pictures.zip -j -d /__w/iso/iso/live-default/config/includes.chroot_after_packages/System/Library/Desktop\ Pictures/ -x README.md
   chmod +x /__w/iso/iso/live-default/config/includes.chroot_after_packages/opt/bin/*
+  ls /__w/iso/iso/live-default/config/includes.chroot_after_packages/opt/
 fi
 
 # Modify package list and extract GNUstep for ARM64
