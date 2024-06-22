@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Define an array of repository URLs
 repos=(
