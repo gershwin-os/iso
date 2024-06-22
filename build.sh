@@ -21,8 +21,6 @@ fi
 if [ -z "$WORKDIR" ]; then
   echo "GH actions not detected, building all sources"
   checkout.sh
-else
-  return 0
 fi
 
 rm -rf live-default
