@@ -8,16 +8,19 @@ export WORKDIR=""
 
 # Detect whether or not GitHub actions is being used
 if [ -f "/__w/iso/iso/root_amd64.zip" ]; then
+  echo "GH actions AMD64 runner detected"
   export WORKDIR="/__w/iso/iso/"
 fi
 
 if [ -f "/home/runner/work/iso/iso/root_arm64.zip" ]; then
+  echo "GH actions ARM64 runner detected"
   export WORKDIR="/home/runner/work/iso/iso/"
 fi
 
 # Check if WORKDIR is still empty
 if [ -z "$WORKDIR" ]; then
-  ./checkout.sh
+  echo "GH actions not detected, building all sources"
+  checkout.sh
 else
   return 0
 fi
