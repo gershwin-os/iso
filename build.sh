@@ -3,6 +3,25 @@
 # Exit immediately if any command exits with a non-zero status
 set -e
 
+# Initialize WORKDIR to empty (if not already set)
+export WORKDIR=""
+
+# Detect whether or not GitHub actions is being used
+if [ -f "/__w/iso/iso/root_amd64.zip" ]; then
+  export WORKDIR="/__w/iso/iso/"
+fi
+
+if [ -f "/home/runner/work/iso/iso/root_arm64.zip" ]; then
+  export WORKDIR="/home/runner/work/iso/iso/"
+fi
+
+# Check if WORKDIR is still empty
+if [ -z "$WORKDIR" ]; then
+  ./checkout.sh
+else
+  return 0
+fi
+
 rm -rf live-default
 mkdir live-default
 cd live-default || exit
