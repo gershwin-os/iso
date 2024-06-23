@@ -7,14 +7,14 @@ set -e
 export WORKDIR=""
 
 # Detect whether or not GitHub actions is being used
-if [ -d "/__w/system/system/" ]; then
+if [ -d "/__w/iso/iso/" ]; then
   echo "GH actions AMD64 runner detected"
-  export WORKDIR="/__w/system/system/"
+  export WORKDIR="/__w/iso/iso/"
 fi
 
-if [ -d "/home/runner/work/system/system/" ]; then
+if [ -d "/home/runner/work/iso/iso/" ]; then
   echo "GH actions ARM64 runner detected"
-  export WORKDIR="/home/runner/work/system/system/"
+  export WORKDIR="/home/runner/work/iso/iso/"
 fi
 
 if [ -z "$WORKDIR" ]; then
@@ -34,7 +34,7 @@ lb_config=" \
     --iso-volume "'"Gershwin"'"
     "
 
-if [ -f "/home/runner/work/iso/iso/root_arm64.zip" ]; then
+if [ -d "/home/runner/work/iso/iso/" ]; then
 lb_config="$lb_config \
     --architectures arm64 \
     --bootloader grub-efi \
@@ -51,7 +51,7 @@ echo "xorg" > config/package-lists/gershwin.list.chroot
 echo "git" > config/package-lists/gershwin.list.chroot
 
 # Modify package list extract GNUstep for AMD64
-if [ -f "/__w/iso/iso/root_amd64.zip" ]; then
+if [ -d "/__w/iso/iso/" ]; then
   cp /__w/iso/iso/config/package-lists/gershwin.list.chroot config/package-lists/gershwin.list.chroot
   tar -xf /__w/iso/iso/root-amd64.tar.gz -C /__w/iso/iso/live-default/config/includes.chroot_after_packages/
   tar -xf /__w/iso/iso/system-amd64.tar.gz -C /__w/iso/iso/live-default/config/includes.chroot_after_packages/
@@ -76,7 +76,7 @@ if [ -f "/__w/iso/iso/root_amd64.zip" ]; then
 fi
 
 # Modify package list and extract GNUstep for ARM64
-if [ -f "/home/runner/work/iso/iso/root_arm64.zip" ]; then
+if [ -d "/home/runner/work/iso/iso/" ]; then
   cp /home/runner/work/iso/iso/config/package-lists/gershwin.list.chroot config/package-lists/gershwin.list.chroot
   tar -xf /home/runner/work/iso/iso/root-arm64.tar.gz -C /home/runner/work/iso/iso/live-default/config/includes.chroot_after_packages/
   tar -xf /home/runner/work/iso/iso/system-arm64.tar.gz -C /home/runner/work/iso/iso/live-default/config/includes.chroot_after_packages/
