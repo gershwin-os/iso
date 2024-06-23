@@ -83,7 +83,6 @@ jobs:
         shell: bash
       - name: Build ISO on Debian 12 AMD64
         run: |
-          unzip root_amd64.zip
           unzip system_amd64.zip
           unzip developer_amd64.zip
           unzip applications_amd64.zip
