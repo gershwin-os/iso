@@ -37,7 +37,7 @@ jobs:
           echo "AMD64 Artifact URL: $artifact_url_amd64"
           echo "AMD64_ARTIFACT_URL=$artifact_url_amd64" >> $GITHUB_ENV
         shell: bash
-      - name: Download AMD64 artifact for root
+      - name: Download AMD64 artifact for system
         run: |
           curl -s -o system_amd64.zip -L -u ${{ secrets.GH_TOKEN }} "${{ env.AMD64_ARTIFACT_URL }}"
         shell: bash
