@@ -37,7 +37,7 @@ lb_config=" \
     --iso-volume "'"Gershwin"'"
     "
 
-if [ -d "/home/runner/work/iso/iso/" ]; then
+if [ "${ARCH}" = "amd64" ]; then
 lb_config="$lb_config \
     --architectures arm64 \
     --bootloader grub-efi \
