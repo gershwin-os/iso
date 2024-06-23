@@ -95,6 +95,8 @@ jobs:
             --privileged
           run: |
             unzip system_arm64.zip
+            unzip developer_arm64.zip
+            unzip applications_arm64.zip
             ./build.sh
       - name: Upload artifact
         uses: actions/upload-artifact@v4
