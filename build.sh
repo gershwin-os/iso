@@ -7,21 +7,22 @@ set -e
 export WORKDIR=""
 
 # Detect whether or not GitHub actions is being used
-if [ -f "/__w/iso/iso/root_amd64.zip" ]; then
+if [ -d "/__w/system/system/" ]; then
   echo "GH actions AMD64 runner detected"
-  export WORKDIR="/__w/iso/iso/"
+  export WORKDIR="/__w/system/system/"
 fi
 
-if [ -f "/home/runner/work/iso/iso/root_arm64.zip" ]; then
+if [ -d "/home/runner/work/system/system/" ]; then
   echo "GH actions ARM64 runner detected"
-  export WORKDIR="/home/runner/work/iso/iso/"
+  export WORKDIR="/home/runner/work/system/system/"
 fi
 
-# Check if WORKDIR is still empty
 if [ -z "$WORKDIR" ]; then
-  echo "GH actions not detected, building all sources"
-  checkout.sh
+  echo "WORKDIR is empty, setting it to current working directory"
+  WORKDIR="$PWD"
 fi
+
+echo "WORKDIR is set to: $WORKDIR"
 
 rm -rf live-default
 mkdir live-default
