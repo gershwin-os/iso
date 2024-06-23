@@ -40,6 +40,46 @@ jobs:
         run: |
           curl -s -o system_arm64.zip -L -u ${{ secrets.GH_TOKEN }} "${{ env.ARM64_ARTIFACT_URL }}"
         shell: bash
+      - name: Get latest ARM64 workflow run ID for developer
+        id: get_latest_developer_arm64_run
+        run: |
+          arm64_response=$(curl -s -X GET -u ${{ secrets.GH_TOKEN }} "https://api.github.com/repos/gershwin-os/developer/actions/workflows/build_developer_arm64.yml/runs?status=success&per_page=1")
+          echo "ARM64 API response: $arm64_response"
+          latest_run_arm64=$(echo $arm64_response | jq -r '.workflow_runs[0].id')
+          echo "Latest ARM64 run ID: $latest_run_arm64"
+          echo "ARM64_RUN_ID=$latest_run_arm64" >> $GITHUB_ENV
+        shell: bash
+      - name: Get ARM64 artifact URL for developer
+        id: get_developer_arm64_artifact_url
+        run: |
+          artifact_url_arm64=$(curl -s -X GET -u ${{ secrets.GH_TOKEN }} "https://api.github.com/repos/gershwin-os/developer/actions/runs/${{ env.ARM64_RUN_ID }}/artifacts" | jq -r '.artifacts[0].archive_download_url')
+          echo "ARM64 Artifact URL: $artifact_url_arm64"
+          echo "ARM64_ARTIFACT_URL=$artifact_url_arm64" >> $GITHUB_ENV
+        shell: bash
+      - name: Download ARM64 artifact for developer
+        run: |
+          curl -s -o developer_arm64.zip -L -u ${{ secrets.GH_TOKEN }} "${{ env.ARM64_ARTIFACT_URL }}"
+        shell: bash
+      - name: Get latest ARM64 workflow run ID for applications
+        id: get_latest_applications_arm64_run
+        run: |
+          arm64_response=$(curl -s -X GET -u ${{ secrets.GH_TOKEN }} "https://api.github.com/repos/gershwin-os/applications/actions/workflows/build_applications_arm64.yml/runs?status=success&per_page=1")
+          echo "ARM64 API response: $arm64_response"
+          latest_run_arm64=$(echo $arm64_response | jq -r '.workflow_runs[0].id')
+          echo "Latest ARM64 run ID: $latest_run_arm64"
+          echo "ARM64_RUN_ID=$latest_run_arm64" >> $GITHUB_ENV
+        shell: bash
+      - name: Get ARM64 artifact URL for applications
+        id: get_applications_arm64_artifact_url
+        run: |
+          artifact_url_arm64=$(curl -s -X GET -u ${{ secrets.GH_TOKEN }} "https://api.github.com/repos/gershwin-os/applications/actions/runs/${{ env.ARM64_RUN_ID }}/artifacts" | jq -r '.artifacts[0].archive_download_url')
+          echo "ARM64 Artifact URL: $artifact_url_arm64"
+          echo "ARM64_ARTIFACT_URL=$artifact_url_arm64" >> $GITHUB_ENV
+        shell: bash
+      - name: Download ARM64 artifact for applications
+        run: |
+          curl -s -o applications_arm64.zip -L -u ${{ secrets.GH_TOKEN }} "${{ env.ARM64_ARTIFACT_URL }}"
+        shell: bash
       - name: Build ISO on Debian 12 ARM64
         uses: uraimo/run-on-arch-action@v2
         id: runcmd
