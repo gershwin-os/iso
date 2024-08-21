@@ -22,4 +22,4 @@ git clone https://github.com/gershwin-os/iso.git
 ```
 cd iso && sudo ./build.sh
 ```
-TEST
+
