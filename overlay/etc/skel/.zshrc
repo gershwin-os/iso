@@ -17,7 +17,7 @@ source /System/Makefiles/GNUstep.sh
 xdg-user-dirs-update
 
 # Check if GWorkspace is running
-if ! pgrep -x "GWorkspace" > /dev/null; then
+if ! pgrep -x "Workspace" > /dev/null; then
     # Launch startx with Gershwin-X11 script
     startx /System/Library/Scripts/Gershwin-X11
 fi
