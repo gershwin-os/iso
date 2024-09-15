@@ -4,7 +4,7 @@ This repository automates the build of Gershwin Installation media.
 
 ### Requirements
 
-* Debain 12
+* Debian 12
 * live-build
 * qemu-user-static (for ARM64)
 
