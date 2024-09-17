@@ -59,19 +59,11 @@ echo "Config is ${lb_config}"
 
 lb config $lb_config
 
-echo "xorg" > config/package-lists/gershwin.list.chroot
-echo "git" > config/package-lists/gershwin.list.chroot
-echo "picom" > config/package-lists/gershwin.list.chroot
-echo "zsh" > config/package-lists/gershwin.list.chroot
-
 # Modify package list extract GNUstep
-cp ${WORKDIR}/config/package-lists/gershwin.list.chroot config/package-lists/gershwin.list.chroot
+cp -R ../config/* config/
 tar -xf ${WORKDIR}/system.txz -C ${WORKDIR}/live-default/config/includes.chroot_after_packages/
 tar -xf ${WORKDIR}/applications.txz -C ${WORKDIR}/live-default/config/includes.chroot_after_packages/
 cp -R ${WORKDIR}/overlay/* ${WORKDIR}/live-default/config/includes.chroot_after_packages/
-ls ${WORKDIR}/live-default/config/includes.chroot_after_packages/
-ls ${WORKDIR}/live-default/config/includes.chroot_after_packages/Applications
-ls ${WORKDIR}/live-default/config/includes.chroot_after_packages/System/Applications
 
 cat <<EOF > config/hooks/live/gershwin.hook.chroot
 #!/bin/sh
