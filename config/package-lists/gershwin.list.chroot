@@ -6,3 +6,5 @@ picom
 xorg
 xserver-xorg-input-libinput
 zsh
+zfs-dkms
+zfsutils-linux
