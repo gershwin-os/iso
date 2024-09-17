@@ -1,3 +1,6 @@
+dpkg-dev
+linux-headers-generic
+linux-image-generic
 git
 picom
 xorg
