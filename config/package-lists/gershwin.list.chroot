@@ -1,10 +1,10 @@
 dpkg-dev
+git
 linux-headers-generic
 linux-image-generic
-git
 picom
 xorg
 xserver-xorg-input-libinput
-zsh
 zfs-dkms
 zfsutils-linux
+zsh
