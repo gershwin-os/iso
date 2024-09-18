@@ -42,7 +42,6 @@ cd live-default || exit
 
 lb_config=" \
     --distribution bookworm \
-    --archive-areas "main contrib non-free non-free-firmware" \
     --image-name gershwin-$(date +"%Y%m%d%H%m") \
     --iso-volume "'"Gershwin"'"
     "
