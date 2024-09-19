@@ -1,6 +1,10 @@
+dpkg-dev
 git
-fonts-inter
+linux-headers-generic
+linux-image-generic
 picom
 xorg
 xserver-xorg-input-libinput
+zfs-dkms
+zfsutils-linux
 zsh
